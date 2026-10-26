@@ -5,7 +5,7 @@
 
 <h3><code>rishi@github ~ $ ./contributions.sh</code></h3>
 
-<img src="./contrib-heatmap.svg" width="860" alt="Rishikesh's GitHub contribution graph - auto-refreshed daily" />
+<img src="./contrib-heatmap.svg?v=2" width="860" alt="Rishikesh's GitHub contribution graph - auto-refreshed daily" />
 
 <br>
 <br>
@@ -19,8 +19,8 @@
 
 <table>
 <tr>
-<td valign="top"><img src="./rishi-ascii.svg" width="420" alt="Rishikesh Sharma - Operator Dossier" /></td>
-<td valign="top"><img src="./stats.svg" width="420" alt="Rishikesh's GitHub streak and contribution stats - auto-refreshed daily" /></td>
+<td valign="top"><img src="./rishi-ascii.svg?v=2" width="420" alt="Rishikesh Sharma - Operator Dossier" /></td>
+<td valign="top"><img src="./stats.svg?v=2" width="420" alt="Rishikesh's GitHub streak and contribution stats - auto-refreshed daily" /></td>
 </tr>
 </table>
 
