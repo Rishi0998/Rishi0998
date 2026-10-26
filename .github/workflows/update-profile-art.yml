@@ -35,8 +35,8 @@ jobs:
       - name: Render streak / numbers card
         run: python scripts/render_stats_svg.py
 
-      - name: Render identity terminal card
-        run: python scripts/make_rishi_ascii.py
+      - name: Render identity ASCII portrait
+        run: python scripts/make_rishi_avatar_ascii.py
 
       - name: Commit updated art
         uses: stefanzweifel/git-auto-commit-action@v5
