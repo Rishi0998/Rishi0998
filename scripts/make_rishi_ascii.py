@@ -9,7 +9,7 @@ import html
 import os
 import xml.etree.ElementTree as ET
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "rishi-ascii.svg")
+OUT = os.path.join(os.path.dirname(__file__), "..", "profile-dossier.svg")
 
 W, H = 840, 880
 PAD = 20
