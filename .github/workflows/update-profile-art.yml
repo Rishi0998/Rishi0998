@@ -35,11 +35,14 @@ jobs:
       - name: Render streak / numbers card
         run: python scripts/render_stats_svg.py
 
+      - name: Prep avatar image
+        run: python scripts/prep_rishi_avatar.py
+
       - name: Render identity ASCII portrait
-        run: python scripts/make_rishi_avatar_ascii.py
+        run: python scripts/make_ascii_svg.py
 
       - name: Commit updated art
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph and stats [skip ci]"
-          file_pattern: "data/contributions.json contrib-heatmap.svg stats.svg profile-dossier.svg rishi-ascii.svg"
+          file_pattern: "data/contributions.json contrib-heatmap.svg stats.svg rishi-ascii.svg source-prepped.png"

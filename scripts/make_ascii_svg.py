@@ -1,30 +1,18 @@
-﻿"""
-Convert a portrait photo into a CLEAN, monochrome ASCII-art SVG (Andrew6rant
+"""
+Convert Rishikesh's portrait into a CLEAN, monochrome ASCII-art SVG (Andrew6rant
 style: one light-gray color, subject isolated on a dark background) that "types"
 itself in like a terminal, then holds.
-
-Monochrome is deliberate -- per-character rainbow color is what makes ASCII
-portraits look noisy. One fill color + a good density ramp + high contrast (so a
-busy background washes out to blank) reads as neat and legible.
-
-GitHub renders SVGs embedded via <img> and runs their SMIL animations there (JS
-does not run). Each row is revealed with a left-to-right clip wipe plus a small
-block cursor riding the wipe edge, staggered top -> bottom, so the whole
-portrait prints once and freezes.
 """
 from PIL import Image, ImageEnhance, ImageOps, ImageFilter
 import html
 import os
 import sys
+import xml.etree.ElementTree as ET
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-# defaults to the prepped grayscale image (see prep_photo.py), which already has
-# the background removed + local contrast applied.
 SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "source-prepped.png")
-OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, "..", "avi-ascii.svg")
+OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, "..", "rishi-ascii.svg")
 
-# more columns = more detail (eyes need ~6+ chars across to read). the art
-# stays ART_W px wide either way; cells shrink, keeping a ~1:1.875 char aspect.
 COLS = int(os.environ.get("COLS", 180))
 ART_W_TARGET = 800
 CELL_W = ART_W_TARGET / COLS
@@ -32,8 +20,6 @@ CELL_H = CELL_W * 15 / 8
 ROWS = round(COLS * 8 / 15)
 RAMP = " .`:-=+*cs#%@"  # bright(sparse) -> dark(dense); leading space clears bg
 
-# the prepped image already has bg removed + CLAHE local contrast, so only
-# light global tuning is needed here.
 CONTRAST = 1.05
 BRIGHTNESS = 1.0
 GAMMA = 1.18          # >1 brightens mids -> face lands in sparser chars
@@ -45,8 +31,8 @@ TITLEBAR_H = 30
 STATUS_H = 30
 ART_W = COLS * CELL_W
 ART_H = ROWS * CELL_H
-CANVAS_W = ART_W + PAD * 2
-CANVAS_H = TITLEBAR_H + ART_H + STATUS_H + PAD
+CANVAS_W = 840.0
+CANVAS_H = 880.0
 
 BG = "#0d1117"
 BG2 = "#111722"
@@ -106,7 +92,7 @@ parts.append(f'<line x1="0" y1="{TITLEBAR_H}" x2="{CANVAS_W}" y2="{TITLEBAR_H}" 
 for i, dotcol in enumerate(["#ff5f56", "#ffbd2e", "#27c93f"]):
     parts.append(f'<circle cx="{PAD + i*16}" cy="{TITLEBAR_H/2}" r="5" fill="{dotcol}"/>')
 parts.append(f'<text x="{CANVAS_W/2}" y="{TITLEBAR_H/2 + 4}" fill="{TITLE_TEXT}" font-size="12" '
-             f'text-anchor="middle">avi@github: ~$ ./portrait.sh</text>')
+             f'text-anchor="middle">rishi@github: ~$ ./portrait.sh</text>')
 
 # one <text> per row (single color -> no per-char markup, tiny file)
 font_size = CELL_H * 0.86
@@ -141,14 +127,18 @@ status_line_y = TITLEBAR_H + ART_H + PAD * 0.35
 status_y = status_line_y + 19
 parts.append(f'<line x1="0" y1="{status_line_y:.1f}" x2="{CANVAS_W}" y2="{status_line_y:.1f}" stroke="{FRAME}"/>')
 parts.append(f'<text x="{PAD}" y="{status_y:.1f}" fill="{TITLE_TEXT}" font-size="13">'
-             f'avi@github:~$ whoami <tspan fill="{INK}">Avi Vashishta</tspan></text>')
-status_chars = len("avi@github:~$ whoami Avi Vashishta ")   # cursor sits after the name
+             f'rishi@github:~$ whoami <tspan fill="{INK}">Rishikesh Sharma</tspan></text>')
+status_chars = len("rishi@github:~$ whoami Rishikesh Sharma ")   # cursor sits after the name
 parts.append(f'<rect x="{PAD + status_chars * 13 * 0.6:.1f}" y="{status_y-12:.1f}" width="8" height="14" fill="{INK}">'
              f'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" '
              f'dur="1s" repeatCount="indefinite"/></rect>')
 
 parts.append("</svg>")
 svg = "".join(parts)
-with open(OUT, "w") as f:
+
+# Strict XML Validation
+ET.fromstring(svg)
+
+with open(OUT, "w", encoding="utf-8") as f:
     f.write(svg)
-print("wrote", OUT, len(svg), "bytes;", CANVAS_W, "x", CANVAS_H)
+print("SUCCESS! Wrote", OUT, len(svg), "bytes;", CANVAS_W, "x", CANVAS_H)
