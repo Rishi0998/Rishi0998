@@ -3,9 +3,11 @@
 Generate an 840x880 terminal window SVG for Rishikesh Sharma (rishi-ascii.svg)
 that perfectly pairs with stats.svg (also 840x880) at equal width (420px each).
 Includes macOS title bar, cyber operator ASCII art, live typed identity dossier,
-and a blinking terminal prompt.
+and a blinking terminal prompt. Fully XML-escaped for GitHub Camo proxy.
 """
+import html
 import os
+import xml.etree.ElementTree as ET
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "rishi-ascii.svg")
 
@@ -44,7 +46,7 @@ dossier = [
     ("hardware_iot  : Nextron (5-Feature Gesture Smart Vehicle)", INK, False),
     ("digital_reach : 3,000,000+ Subscribers (YouTube Network)", PINK, True),
     ("base_coords   : Chandigarh, India [28°N 77°E]", INK, False),
-    ("system_status : [ ONLINE ] — All defensive perimeter active", GREEN, False),
+    ("system_status : [ ONLINE ] — All defensive perimeters active", GREEN, False),
 ]
 
 svg_parts = [
@@ -71,31 +73,35 @@ svg_parts = [
 for i, dot in enumerate(["#ff5f56", "#ffbd2e", "#27c93f"]):
     svg_parts.append(f'<circle cx="{PAD + i*16}" cy="{TITLEBAR_H/2}" r="5" fill="{dot}"/>')
 
-svg_parts.append(f'<text x="{W/2}" y="{TITLEBAR_H/2 + 4}" fill="{MUTED}" font-size="12" text-anchor="middle">rishi@github: ~$ whoami</text>')
+svg_parts.append(
+    f'<text x="{W/2}" y="{TITLEBAR_H/2 + 4}" fill="{MUTED}" font-size="12" text-anchor="middle">rishi@github: ~$ whoami</text>'
+)
 
-# ASCII Header Banner
+# ASCII Header Banner (Escaped)
 start_y = 65
 for idx, line in enumerate(ascii_lines):
     delay = idx * 0.08
+    safe_line = html.escape(line)
     svg_parts.append(
         f'<text class="t" style="animation-delay:{delay:.2f}s" x="{PAD+10}" y="{start_y + idx*16}" '
-        f'fill="{GREEN}" font-size="11.5" font-weight="700" xml:space="preserve">{line}</text>'
+        f'fill="{GREEN}" font-size="11.5" font-weight="700" xml:space="preserve">{safe_line}</text>'
     )
 
 # Separator line
 sep_y = start_y + len(ascii_lines) * 16 + 18
 svg_parts.append(f'<line x1="{PAD}" y1="{sep_y}" x2="{W-PAD}" y2="{sep_y}" stroke="{FRAME}" stroke-dasharray="4,4"/>')
 
-# Dossier Lines
+# Dossier Lines (Escaped)
 cur_y = sep_y + 36
 line_h = 36
 for idx, (text, color, is_bold) in enumerate(dossier):
     delay = 0.5 + idx * 0.12
     fw = "700" if is_bold else "400"
     fsize = "18" if text.startswith("$") else "16"
+    safe_text = html.escape(text)
     svg_parts.append(
         f'<text class="t" style="animation-delay:{delay:.2f}s" x="{PAD+20}" y="{cur_y}" '
-        f'fill="{color}" font-size="{fsize}" font-weight="{fw}">{text}</text>'
+        f'fill="{color}" font-size="{fsize}" font-weight="{fw}">{safe_text}</text>'
     )
     cur_y += line_h
 
@@ -112,7 +118,11 @@ svg_parts.append(
 svg_parts.append('</svg>')
 
 svg = "".join(svg_parts)
+
+# Verify valid XML before writing
+ET.fromstring(svg)
+
 with open(OUT, "w", encoding="utf-8") as f:
     f.write(svg)
 
-print(f"wrote {OUT}: {W} x {H}, {len(svg)//1024} KB")
+print(f"VALID XML! Wrote {OUT}: {W} x {H}, {len(svg)//1024} KB")
