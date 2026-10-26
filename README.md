@@ -10,17 +10,30 @@
 <br>
 <br>
 
-<!-- terminal dossier (left) + streak/numbers card (right). both svgs are
-     840x880 so equal widths give equal heights.
-     dossier: python scripts/make_rishi_ascii.py
-     stats:   python scripts/render_stats_svg.py (same daily workflow) -->
+<!-- profile photo (left) + streak/numbers card (right) -->
 
 <h3><code>rishi@github ~ $ whoami</code></h3>
 
 <table>
 <tr>
-<td valign="top"><img src="./profile-dossier.svg" width="420" alt="Rishikesh Sharma - ASCII Portrait" /></td>
-<td valign="top"><img src="./stats.svg" width="420" alt="Rishikesh's GitHub streak and contribution stats - auto-refreshed daily" /></td>
+<td valign="middle" align="center" width="420">
+  <br>
+  <img src="./current_avatar.png" width="320" style="border-radius: 20px; border: 2px solid #30363d;" alt="Rishikesh Sharma" />
+  <br>
+  <br>
+  <h2>Rishikesh Sharma</h2>
+  <p><b>Cybersecurity Engineer · AI Security Researcher</b></p>
+  <p>
+    <code>🌐 Top 50 Internationally @ CTFtime.org</code><br>
+    <code>🛡️ Author of Protocol X (Zero-Trust AI Firewall)</code><br>
+    <code>🥇 1st Place CyberStrike CTF & ZEAI Hackathon</code><br>
+    <code>📺 3,000,000+ Subscribers (YouTube Network)</code>
+  </p>
+  <br>
+</td>
+<td valign="top" width="420">
+  <img src="./stats.svg" width="420" alt="Rishikesh's GitHub streak and contribution stats - auto-refreshed daily" />
+</td>
 </tr>
 </table>
 
