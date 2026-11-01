@@ -33,32 +33,32 @@
 <tr>
 <td width="50%" valign="top">
 
-**🛡️ Protocol X — Zero-Trust AI Firewall**  
-*Intent-driven security perimeter for LLMs & GenAI systems*  
-`Python` · `AI Safety` · `Zero Trust` · `NLP`
+**[🛡️ Protocol X — Zero-Trust AI Governance](https://github.com/Rishi0998/PROTOCOL-X)**  
+*Autonomous AI governance, runtime guardrails & compliance platform (NIST AI RMF, EU AI Act)*  
+`Python` • `FastAPI` • `AI Safety` • `Zero Trust` • `LLM Guardrails`
 
 </td>
 <td width="50%" valign="top">
 
-**🔍 AI Forensic Time Machine**  
-*AI-driven incident reconstruction & log intelligence platform*  
-`Python` · `Cyber Forensics` · `Log Analysis` · `AI`
+**[⚡ AI Forensic Time Machine](https://github.com/Rishi0998/AI-FORENSIC-TIME-MACHINE-)**  
+*Temporal cyber forensics SOC dashboard, EVTX kill-chain replay & Gemini 3.5 root cause analysis*  
+`Python` • `FastAPI` • `React + Vite` • `MITRE ATT&CK` • `Gemini AI`
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-**🤖 Nextron — 5-Feature Gesture IoT Vehicle**  
-*Autonomous vehicle with gesture, voice & Bluetooth control*  
-`Embedded C/C++` · `IoT` · `Arduino` · `Sensors`
+**[🤖 Nextron — 5-Feature Gesture IoT Vehicle](https://github.com/Rishi0998)**  
+*Autonomous robotic vehicle featuring gesture recognition, speech input & Bluetooth telemetry*  
+`Embedded C/C++` • `IoT` • `Arduino` • `Hardware Sensors`
 
 </td>
 <td width="50%" valign="top">
 
-**📺 Digital Media Ecosystem (3M+ Subscribers)**  
-*Audience growth engine & algorithmic retention pipeline*  
-`Growth Analytics` · `Content Strategy` · `SEO`
+**[📡 Digital Media Ecosystem (3M+ Reach)](https://youtube.com)**  
+*High-velocity audience growth engine & algorithmic engagement distribution pipeline*  
+`Growth Engineering` • `Algorithmic Distribution` • `Content Analytics`
 
 </td>
 </tr>
@@ -69,7 +69,7 @@
 
 <h3><code>rishi@github ~ $ ./links.sh</code></h3>
 
-<p><b>Cybersecurity Engineer · AI Security Researcher · CTF Global Elite · 3M+ Creator</b></p>
+<p><b>Cybersecurity Engineer &bull; AI Security Researcher &bull; CTF Global Elite &bull; 3M+ Creator</b></p>
 
 [![CTFtime](https://img.shields.io/badge/CTFtime-Top_50_Global-00D4FF?style=for-the-badge&logo=target&logoColor=white)](https://ctftime.org)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Rishikesh_Sharma-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
