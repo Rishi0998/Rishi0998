@@ -41,8 +41,13 @@ jobs:
       - name: Render identity ASCII portrait
         run: python scripts/make_ascii_svg.py
 
+      - name: Cache bust profile README images
+        run: |
+          sed -i 's/\(contrib-heatmap\.svg\)\([?][^"]*\)\?/\1?v='$(date +%s)'/g' README.md
+          sed -i 's/\(stats\.svg\)\([?][^"]*\)\?/\1?v='$(date +%s)'/g' README.md
+
       - name: Commit updated art
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph and stats [skip ci]"
-          file_pattern: "data/contributions.json contrib-heatmap.svg stats.svg rishi-ascii.svg source-prepped.png"
+          file_pattern: "data/contributions.json contrib-heatmap.svg stats.svg rishi-ascii.svg source-prepped.png README.md"
